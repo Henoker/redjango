@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Index Template</h2>
+<div class="alert alert-success" role="alert">
+    A simple success alert—check it out!
+    </div>
+    <div class="alert alert-danger" role="alert">
+    A simple danger alert—check it out!
+    </div>
+    <div class="alert alert-warning" role="alert">
+    A simple warning alert—check it out!
+</div>
+<button type="button" class="btn btn-primary">Primary</button>
+<a href="#" class="btn btn-secondary">Secondary</a>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-primary" data-bstoggle="modal" data-bs-target="#example-modal">
+    Open Modal
+    </button>
+    <div class="modal" id="example-modal" tabindex="-1" arialabelledby="example-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="example-modal-label">Modal
+    Title</h5>
+    <button type="button" class="btn-close" data-bsdismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    Modal Body
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bsdismiss="modal">Close</button>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

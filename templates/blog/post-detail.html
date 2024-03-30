@@ -4,6 +4,7 @@
 <h2>{{ post.title }}</h2>
 
 {% comment %} <div class="row"> {% endcomment %}
+    {% include "blog/post-comments.html" %}
     {% row %}
     {% comment %} <div class="col"> {% endcomment %}
     {% comment %} {% include "blog/post-byline.html" %} {% endcomment %}
@@ -12,6 +13,7 @@
         {% endcol %}
     {% comment %} </div> {% endcomment %}
     {% endrow %}
+   
 {% comment %} </div> {% endcomment %}
 {% comment %} <div class="row"> {% endcomment %}
     {% row %}

@@ -2,6 +2,9 @@ from configurations import Configuration
 
 from pathlib import Path
 
+from configurations import values
+
+
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
@@ -101,8 +104,10 @@ class Dev(Configuration):
 
     LANGUAGE_CODE = "en-us"
 
-    TIME_ZONE = "UTC"
+    TIME_ZONE = values.Value("UTC")
     
+   
+
     USE_I18N = True
 
     USE_TZ = True

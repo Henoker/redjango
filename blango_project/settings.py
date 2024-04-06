@@ -3,6 +3,7 @@ from configurations import Configuration
 from pathlib import Path
 
 from configurations import values
+import logging
 
 
 class Dev(Configuration):
@@ -126,3 +127,49 @@ class Dev(Configuration):
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+    
+    LOGGING = {
+      "version": 1,
+      "disable_existing_loggers": False,
+      "filters": {
+          "require_debug_false": {
+              # Error Emails are only sent in production enviroments
+              # The class below only passes messages through when DEBUG is False.
+              "()": "django.utils.log.RequireDebugFalse",
+          },
+      },
+      "formatters": {
+          "verbose": {
+              "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+              # Outputs the log level, time of the message (asctime), name of 
+              # the module that generated the message, the process ID, 
+              # thread ID, and lastly, the message.
+              "style": "{",
+            },
+      },
+      "handlers": {
+          "console": {
+              "class": "logging.StreamHandler", 
+              "stream": "ext://sys.stdout",
+              "formatter": "verbose",
+          },
+          "mail_admins": {
+              "level": "ERROR", 
+              "class": "django.utils.log.AdminEmailHandler",
+              "filters": ["require_debug_false"],
+          },
+      },
+      "loggers": {
+          # Django.request so that only unhandled exceptions get sent.
+          "django.request": {
+              "handlers": ["mail_admins"],
+              "level": "ERROR",
+              # Add propagate: True; so the stack traces are logged to the console during development.
+              "propagate": True,
+          },
+      },
+      "root": {
+          "handlers": ["console"],
+          "level": "DEBUG",
+      },
+  }

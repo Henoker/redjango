@@ -37,6 +37,7 @@ class Dev(Configuration):
     # Third_party app
         "crispy_forms",
         "crispy_bootstrap5",
+        "debug_toolbar",
     ]
 
     MIDDLEWARE = [
@@ -47,8 +48,15 @@ class Dev(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
-
+    
+    INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+    ]
+    
     ROOT_URLCONF = "blango_project.urls"
 
     TEMPLATES = [
